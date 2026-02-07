@@ -3,6 +3,7 @@ import { searchPexels } from './pexels';
 import { searchPixabay } from './pixabay';
 import { searchGiphy } from './giphy';
 import { searchFreesound } from './freesound';
+import { getEmbedding, cosineSimilarity } from './embeddingService';
 
 interface SourceResult {
   source: MediaSource;
@@ -47,13 +48,40 @@ export async function searchAll(params: SearchParams): Promise<SearchResponse> {
   // Interleave results from different sources for variety
   const interleaved = interleaveResults(allItems);
 
+  // Semantic re-ranking if query exists
+  const rankedItems = params.query 
+    ? await semanticRerank(params.query, interleaved)
+    : interleaved;
+
   return {
-    items: interleaved,
+    items: rankedItems,
     totalResults,
     page: params.page || 1,
     perPage: params.perPage || 15,
     sources: sourceSummary,
   };
+}
+
+async function semanticRerank(query: string, items: MediaItem[]): Promise<MediaItem[]> {
+  try {
+    const queryEmbedding = await getEmbedding(query);
+    
+    const itemsWithScores = await Promise.all(
+      items.map(async (item) => {
+        const text = `${item.title} ${item.description || ''} ${item.tags?.join(' ') || ''}`.trim();
+        const itemEmbedding = await getEmbedding(text);
+        const similarity = cosineSimilarity(queryEmbedding, itemEmbedding);
+        return { item, similarity };
+      })
+    );
+
+    return itemsWithScores
+      .sort((a, b) => b.similarity - a.similarity)
+      .map(({ item }) => item);
+  } catch (error) {
+    console.error('Semantic rerank error:', error);
+    return items;
+  }
 }
 
 function interleaveResults(items: MediaItem[]): MediaItem[] {

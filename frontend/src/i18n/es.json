@@ -1,0 +1,70 @@
+{
+  "app": {
+    "title": "MediaHunter",
+    "subtitle": "Busca y descarga contenido gratis"
+  },
+  "search": {
+    "placeholder": "Buscar imágenes, videos, audio, GIFs...",
+    "button": "Buscar",
+    "noResults": "No se encontraron resultados",
+    "noResultsHint": "Intenta con otras palabras clave o filtros",
+    "searching": "Buscando...",
+    "results": "{{count}} resultados",
+    "error": "Ocurrió un error al buscar"
+  },
+  "filters": {
+    "all": "Todo",
+    "images": "Imágenes",
+    "videos": "Videos",
+    "audio": "Audio",
+    "gifs": "GIFs",
+    "orientation": "Orientación",
+    "landscape": "Horizontal",
+    "portrait": "Vertical",
+    "square": "Cuadrado",
+    "sortBy": "Ordenar por",
+    "relevant": "Relevante",
+    "popular": "Popular",
+    "latest": "Reciente"
+  },
+  "media": {
+    "by": "por",
+    "download": "Descargar",
+    "downloadOptions": "Opciones de descarga",
+    "preview": "Vista previa",
+    "duration": "Duración",
+    "openSource": "Ver fuente",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "¡Enlace copiado!",
+    "close": "Cerrar"
+  },
+  "favorites": {
+    "title": "Favoritos",
+    "empty": "Aún no hay favoritos",
+    "add": "Agregar a favoritos",
+    "remove": "Quitar de favoritos"
+  },
+  "history": {
+    "title": "Historial de búsqueda",
+    "empty": "No hay búsquedas recientes",
+    "clear": "Limpiar historial"
+  },
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo oscuro"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español"
+  },
+  "source": {
+    "pexels": "Pexels",
+    "pixabay": "Pixabay",
+    "giphy": "Giphy",
+    "freesound": "Freesound"
+  },
+  "footer": {
+    "powered": "Desarrollado con Pexels, Pixabay, Giphy y Freesound",
+    "attribution": "Todo el contenido requiere atribución a los autores originales"
+  }
+}
